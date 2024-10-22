@@ -1,0 +1,120 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #f4f4f4; /* Changed to match the section style */
+    font-family: 'Times New Roman', Times, serif; /* Changed to match the section style */
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #c2eaef, #cceed0); /* Added gradient background */
+}
+
+.login-box {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px; /* Matched the border radius */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Matched the box shadow */
+    overflow: hidden;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px; /* Added padding */
+}
+
+.profile-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4; /* Changed background color to match */
+    padding: 20px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.login-section {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Set background color to white */
+    border-radius: 8px; /* Matched the border radius */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Matched the box shadow */
+}
+
+.login-section h2 {
+    margin-bottom: 20px;
+    font-size: 28px; /* Matched the font size */
+    color: #333;
+    text-align: center;
+    text-transform: uppercase; /* Added text transform */
+    border-bottom: 3px solid #4CAF50; /* Added border bottom */
+    padding-bottom: 10px; /* Added padding bottom */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+}
+
+.form-control {
+    width: calc(100% - 40px);
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Changed to match the section style */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Matched the border radius */
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px; /* Adjusted margin */
+    align-self: center;
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+}
+
+.login-button:hover {
+    background-color: #45a049; /* Added hover effect */
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 20px; /* Adjusted margin */
+    color: #4CAF50; /* Changed text color to match */
+    text-align: center;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}

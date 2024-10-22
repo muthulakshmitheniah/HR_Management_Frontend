@@ -1,0 +1,145 @@
+<div class="container-fluid">
+    <div class="row text-center text-success mt-3">
+      <div class="col-md-4">
+        <a href="" style="text-decoration: none;" class="text-success" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+          <div class="card shadow">
+            <div class="card-body">
+              <h6 style="color: black;">Add Student</h6>
+              <p style="color: black;">+</p>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="" style="text-decoration: none;" class="text-success">
+          <div class="card shadow">
+            <div class="card-body">
+              <h6 style="color: black;">Total Students</h6>
+              <p style="color: black;">{{ totalStudents }}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  
+    <div class="row pe-2 mt-3">
+      <div class="col-sm-12 text-center">
+        <div>
+          <div class="card-shadow">
+            <div class="card-body">
+              <h5 class="text-success">
+                List of Students
+              </h5>
+              <div class="table table-hover mt-3">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Profile</th>
+                      <th scope="col">Birth Date</th>
+                      <th scope="col">Mobile</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Department</th>
+                      <th scope="col">CGPA</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let student of students">
+                      <td>{{ student.id }}</td>
+                      <td>{{ student.name }}</td>
+                      <td>
+                        <img *ngIf="student.profile" [src]="'http://localhost:3000/uploads/' + student.profile" alt="Profile Picture" style="width: 50px; height: 50px;">
+                      </td>
+                      <td>{{ student.birth_date }}</td>
+                      <td>{{ student.mobile }}</td>
+                      <td>{{ student.email }}</td>
+                      <td>{{ student.department }}</td>
+                      <td>{{ student.cgpa }}</td>
+                      <td>
+                        <button class="edit-button" (click)="editStudent(student.id)">Edit</button>
+                        <button class="delete-button" (click)="deleteStudent(student.id)">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-success custom-text-black" id="addStudentModalLabel">Student Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="studentDetailsForm" (ngSubmit)="isEditing ? updateStudent() : addStudent()">
+              <div class="mb-3">
+                <label for="studentId" class="form-label">Student ID</label>
+                <input type="text" class="form-control" id="studentId" formControlName="id">
+                <div *ngIf="studentDetailsForm.controls['id'].invalid && studentDetailsForm.controls['id'].touched" class="text-danger">
+                  Student ID is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="studentName" class="form-label">Student Name</label>
+                <input type="text" class="form-control" id="studentName" formControlName="name">
+                <div *ngIf="studentDetailsForm.controls['name'].invalid && studentDetailsForm.controls['name'].touched" class="text-danger">
+                  Student Name is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="studentProfile" class="form-label">Profile</label>
+                <input type="file" class="form-control" id="studentProfile" (change)="onFileChange($event)">
+              </div>
+              <div class="mb-3">
+                <label for="studentBirthDate" class="form-label">Birth Date</label>
+                <input type="date" class="form-control" id="studentBirthDate" formControlName="birth_date">
+                <div *ngIf="studentDetailsForm.controls['birth_date'].invalid && studentDetailsForm.controls['birth_date'].touched" class="text-danger">
+                  Birth Date is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="studentMobile" class="form-label">Mobile</label>
+                <input type="text" class="form-control" id="studentMobile" formControlName="mobile">
+                <div *ngIf="studentDetailsForm.controls['mobile'].invalid && studentDetailsForm.controls['mobile'].touched" class="text-danger">
+                  Mobile number is required and should be 10 digits.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="studentEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="studentEmail" formControlName="email">
+                <div *ngIf="studentDetailsForm.controls['email'].invalid && studentDetailsForm.controls['email'].touched" class="text-danger">
+                  Valid email is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="studentDepartment" class="form-label">Department</label>
+                <input type="text" class="form-control" id="studentDepartment" formControlName="department">
+                <div *ngIf="studentDetailsForm.controls['department'].invalid && studentDetailsForm.controls['department'].touched" class="text-danger">
+                  Department is required.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="studentCGPA" class="form-label">CGPA</label>
+                <input type="text" class="form-control" id="studentCGPA" formControlName="cgpa">
+                <div *ngIf="studentDetailsForm.controls['cgpa'].invalid && studentDetailsForm.controls['cgpa'].touched" class="text-danger">
+                  CGPA is required and should be a number.
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update' : 'Add' }} Student</button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEdit()" data-bs-dismiss="modal">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

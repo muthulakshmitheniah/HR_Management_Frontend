@@ -1,0 +1,18 @@
+<div class="department-container" *ngFor="let department of departments">
+  <h2 class="department-title">{{ department }}</h2>
+  <div class="teacher-card" *ngFor="let teacher of (teachers | departmentFilter:department)">
+    <div class="teacher-header">
+      <div class="teacher-info">
+        <h3 class="teacher-name">{{ teacher.faculty_name }}</h3>
+        <p class="teacher-details">Joining Year: {{ teacher.joining_year }}</p>
+        <p class="teacher-details">Email: {{ teacher.faculty_email }}</p>
+      </div>
+    </div>
+    <ol type="1" class="student-list">
+      <li class="student-item" *ngFor="let student of getStudentsByTeacher(department)[teacher.faculty_name]">
+        <span class="student-name">- {{ student.name }}</span>
+        <span class="student-details">Email: {{ student.email }}</span>
+      </li>
+    </ol>
+  </div>
+</div>

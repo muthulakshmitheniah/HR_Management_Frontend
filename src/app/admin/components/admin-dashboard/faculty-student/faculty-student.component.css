@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .department-container {
+    margin-bottom: 40px;
+  }
+  
+  .department-title {
+    font-size: 28px;
+    color: #333;
+    margin: 20px 0;
+    border-bottom: 3px solid #4CAF50;
+    padding-bottom: 10px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .teacher-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .teacher-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .teacher-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .teacher-profile {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+  
+  .teacher-info {
+    flex: 1;
+  }
+  
+  .teacher-name {
+    font-size: 24px;
+    color: #2196F3;
+    margin: 0;
+  }
+  
+  .teacher-details {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+  }
+  
+  .student-list {
+    padding-left: 20px; 
+  }
+  
+  .student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .student-name {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .student-details {
+    font-size: 14px;
+    color: #777;
+  }
+  

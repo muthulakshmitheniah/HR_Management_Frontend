@@ -1,0 +1,31 @@
+<div class="login-container">
+    <div class="login-box">
+        <div class="profile-section">
+            <img src="assets/admin.jpg" alt="User Profile" class="profile-image">
+        </div>
+        <div class="login-section">
+            <h2>Login</h2>
+            <form [formGroup]="adminLoginData" (ngSubmit)="adminLogin()">
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        <img src="assets/email-login.png" alt="Email Icon" class="icon">
+                        <input type="email" id="email" name="email" placeholder="Email Id" class="form-control" formControlName="username">
+                        <div *ngIf="adminLoginData.get('username')?.invalid && (adminLoginData.get('username')?.dirty || adminLoginData.get('username')?.touched)" class="text-danger">
+                            This is a required field
+                        </div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <img src="assets/password.jpeg" alt="Password Icon" class="icon">
+                        <input type="password" id="password" name="password" placeholder="Password" class="form-control" formControlName="password">
+                        <div *ngIf="adminLoginData.get('password')?.invalid && (adminLoginData.get('password')?.dirty || adminLoginData.get('password')?.touched)" class="text-danger">
+                            This is a required field
+                        </div>
+                    </label>
+                </div>
+                <button type="submit" class="login-button" [disabled]="adminLoginData.invalid">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

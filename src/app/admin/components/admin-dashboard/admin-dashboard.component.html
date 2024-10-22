@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+</head>
+<body>
+  <div class="sidebar">
+    <div class="profile-section">
+      <img src="assets/admin.jpg" alt="User Profile" class="profile-image">
+      <div class="profile-info">
+        <h2 class="profile-name">HELLO!!</h2>
+        <p class="profile-role">Administrator</p>
+      </div>
+    </div>
+    <ul>
+      <li><a (click)="showFacultyData()"><i class="fas fa-users icon"></i> Faculty</a></li>
+      <li><a (click)="showStudentData()"><i class="fas fa-user-graduate icon"></i> Students</a></li>
+      <li><a (click)="showTeacherStudentData()"><i class="fas fa-book icon"></i> Sections</a></li>
+      <li><a (click)="signout()"><i class="fas fa-sign-out-alt icon"></i> Signout</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <app-faculty-data *ngIf="faculty"></app-faculty-data>
+    <app-faculty-student *ngIf="teacher_student"></app-faculty-student>
+    <app-student-data *ngIf="student"></app-student-data>
+  </div>
+</body>
+</html>

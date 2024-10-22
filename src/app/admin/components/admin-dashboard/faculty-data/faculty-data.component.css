@@ -1,0 +1,158 @@
+/* Apply Times New Roman to the entire webpage */
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  padding: 20px;
+}
+
+.card {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card h6 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 18px;
+  color: #4CAF50;
+  margin: 0;
+}
+
+.text-success {
+  color: #4CAF50 !important;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f4f4f4;
+}
+
+.modal-content {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  border-bottom: 2px solid #4CAF50;
+}
+
+.modal-title {
+  font-size: 24px;
+  color: #4CAF50;
+}
+
+.btn-close {
+  background: transparent;
+  border: none;
+}
+
+.form-control {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.form-control:focus {
+  border-color: #4CAF50;
+  box-shadow: none;
+}
+
+.text-danger {
+  font-size: 12px;
+  color: red;
+}
+
+.btn-success {
+  background-color: #4CAF50;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-success:hover {
+  background-color: #45a049;
+}
+
+.btn-secondary {
+  background-color: #ccc;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #bbb;
+}
+
+.mt-3 {
+  margin-top: 30px;
+}
+
+
+
+.text-center {
+  text-align: center;
+}
+
+.text-black {
+  color: black;
+}
+
+.edit-button, .delete-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Times New Roman', Times, serif;
+  cursor: pointer;
+}
+
+.edit-button {
+  background-color: #4CAF50;
+  color: white;
+  margin-right: 5px;
+}
+
+.edit-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #e53935;
+}

@@ -1,0 +1,151 @@
+<div class="container-fluid">
+  <div class="row text-center text-success mt-3">
+    <div class="col-md-4">
+      <a href="" style="text-decoration: none;" class="text-success" data-bs-toggle="modal" data-bs-target="#addFacultyModal">
+        <div class="card shadow">
+          <div class="card-body">
+            <h6>Add Faculty</h6>
+            <p>+</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a href="" style="text-decoration: none;" class="text-success">
+        <div class="card shadow">
+          <div class="card-body">
+            <h6>Total Faculties</h6>
+            <p>{{ totalFaculties }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row pe-2 mt-3">
+    <div class="col-sm-12 text-center">
+      <div>
+        <div class="card-shadow">
+          <div class="card-body">
+            <h5 class="text-success">
+              List of Faculties
+            </h5>
+            <div class="table table-hover mt-3">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Joining Year</th>
+                    <th scope="col">Birth Date</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let faculty of faculties">
+                    <td>{{ faculty.faculty_number }}</td>
+                    <td>{{ faculty.faculty_name }}</td>
+                    <td>
+                      <img *ngIf="faculty.faculty_profile" [src]="'http://localhost:3000/uploads/' + faculty.faculty_profile" alt="Profile Picture" style="width: 50px; height: 50px;">
+                    </td>
+                    <td>{{ faculty.joining_year }}</td>
+                    <td>{{ faculty.birth_date }}</td>
+                    <td>{{ faculty.department }}</td>
+                    <td>{{ faculty.mobile }}</td>
+                    <td>{{ faculty.faculty_email }}</td>
+                    <td>
+                      <button class="edit-button" (click)="editFaculty(faculty.faculty_number)">Edit</button>
+                      <button class="delete-button" (click)="deleteFaculty(faculty.faculty_number)">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Faculty Modal -->
+  <div class="modal fade" id="addFacultyModal" tabindex="-1" aria-labelledby="addFacultyModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-success custom-text-black" id="addFacultyModalLabel">Faculty Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="facultyDetailsForm" (ngSubmit)="isEditing ? updateFaculty() : addFaculty()">
+            <div class="mb-3">
+              <label for="facultyNumber" class="form-label">Faculty Number</label>
+              <input type="text" class="form-control" id="facultyNumber" formControlName="faculty_number">
+              <div *ngIf="facultyDetailsForm.get('faculty_number')?.invalid && (facultyDetailsForm.get('faculty_number')?.dirty || facultyDetailsForm.get('faculty_number')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="facultyName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="facultyName" placeholder="Full Name" formControlName="faculty_name">
+              <div *ngIf="facultyDetailsForm.get('faculty_name')?.invalid && (facultyDetailsForm.get('faculty_name')?.dirty || facultyDetailsForm.get('faculty_name')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="facultyPhoto" class="form-label">Upload Photo</label>
+              <input type="file" class="form-control" id="facultyPhoto" (change)="onFileChange($event)">
+              <div *ngIf="facultyDetailsForm.get('faculty_profile')?.invalid && (facultyDetailsForm.get('faculty_profile')?.dirty || facultyDetailsForm.get('faculty_profile')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="facultyJoiningYear" class="form-label">Joining Year</label>
+              <input type="number" class="form-control" id="facultyJoiningYear" placeholder="Joining Year" formControlName="joining_year">
+              <div *ngIf="facultyDetailsForm.get('joining_year')?.invalid && (facultyDetailsForm.get('joining_year')?.dirty || facultyDetailsForm.get('joining_year')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="facultyBirthDate" class="form-label">Birth Date</label>
+              <input type="date" class="form-control" id="facultyBirthDate" formControlName="birth_date">
+              <div *ngIf="facultyDetailsForm.get('birth_date')?.invalid && (facultyDetailsForm.get('birth_date')?.dirty || facultyDetailsForm.get('birth_date')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="facultyDepartment" class="form-label">Department</label>
+              <input type="text" class="form-control" id="facultyDepartment" placeholder="Department" formControlName="department">
+              <div *ngIf="facultyDetailsForm.get('department')?.invalid && (facultyDetailsForm.get('department')?.dirty || facultyDetailsForm.get('department')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="facultyMobile" class="form-label">Mobile Number</label>
+              <input type="text" class="form-control" id="facultyMobile" placeholder="Mobile Number" formControlName="mobile">
+              <div *ngIf="facultyDetailsForm.get('mobile')?.invalid && (facultyDetailsForm.get('mobile')?.dirty || facultyDetailsForm.get('mobile')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="facultyEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="facultyEmail" placeholder="Email" formControlName="faculty_email">
+              <div *ngIf="facultyDetailsForm.get('faculty_email')?.invalid && (facultyDetailsForm.get('faculty_email')?.dirty || facultyDetailsForm.get('faculty_email')?.touched)" class="text-danger">
+                This is a required field
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <button type="submit" class="btn btn-success">
+                {{ isEditing ? 'Update' : 'Add' }} Faculty
+              </button>
+              <button type="button" class="btn btn-secondary" (click)="cancelEdit()" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
